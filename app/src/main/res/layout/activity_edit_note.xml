@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EEEEEE"
+    tools:context="com.ss.mynotes.EditNoteActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_editNote_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/iv_editNote_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="16dp"
+            app:srcCompat="@drawable/ic_arrow_back_white_24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/iv_editNote_back"
+            android:text="ویرایش یادداشت"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/et_editNote_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_editNote_toolbar"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        android:gravity="right"
+        android:hint="عنوان یادداشت"
+        android:padding="10dp"
+        android:textColorHint="#9E9E9E" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout_editNote_saveNote"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorAccent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layoutDirection="rtl"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                app:srcCompat="@drawable/ic_check_white_24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="4dp"
+                android:text="ثبت یادداشت"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <EditText
+        android:id="@+id/et_editNote_description"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/frameLayout_editNote_saveNote"
+        android:layout_below="@id/et_editNote_title"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        android:gravity="right|top"
+        android:hint="محتوای یادداشت را اینجا بنویس..."
+        android:padding="10dp"
+        android:textColorHint="#9E9E9E" />
+</RelativeLayout>

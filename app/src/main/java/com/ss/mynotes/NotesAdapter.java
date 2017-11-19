@@ -66,15 +66,21 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     public void removeItem(int position) {
-        notifyItemRemoved(position);
         this.notes.remove(position);
+        notifyItemRemoved(position);
         checkDeleteAllNotesButtonState();
     }
 
     public void addNote(Note note) {
-        notifyItemInserted(this.notes.size() - 1);
         this.notes.add(note);
+        notifyItemInserted(this.notes.size() - 1);
         checkDeleteAllNotesButtonState();
+    }
+
+    public void updateNote(int position, String title, String description) {
+        notes.get(position).setTitle(title);
+        notes.get(position).setDescription(description);
+        notifyItemChanged(position);
     }
 
     private void checkDeleteAllNotesButtonState() {
@@ -86,9 +92,11 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         private ImageView editImageView;
         private TextView titleTextView;
         private TextView descriptionTextView;
+        private NoteViewCallback noteViewCallback;
 
         public NoteViewHolder(View itemView, final NoteViewCallback noteViewCallback) {
             super(itemView);
+            this.noteViewCallback = noteViewCallback;
             deleteImageView = itemView.findViewById(R.id.iv_note_delete);
             editImageView = itemView.findViewById(R.id.iv_note_edit);
             titleTextView = itemView.findViewById(R.id.tv_note_title);
@@ -101,21 +109,21 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 }
             });
 
+        }
+
+        public void bindNote(final Note note) {
+            titleTextView.setText(note.getTitle());
+            descriptionTextView.setText(note.getDescription());
             editImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    noteViewCallback.onEditButtonClick(getAdapterPosition());
+                    noteViewCallback.onEditButtonClick(getAdapterPosition(), note);
                 }
             });
         }
 
-        public void bindNote(Note note) {
-            titleTextView.setText(note.getTitle());
-            descriptionTextView.setText(note.getDescription());
-        }
-
         public interface NoteViewCallback {
-            void onEditButtonClick(int position);
+            void onEditButtonClick(int position, Note note);
 
             void onDeleteButtonClick(int position);
         }
